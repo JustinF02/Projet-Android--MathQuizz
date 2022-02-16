@@ -14,6 +14,7 @@
     <!-- Play Zone -->
     <string name="btnVerifyInPlayZone">Vérifier</string>
     <string name="message_valeur_null">Aucune valeur saisie</string>
+    <string name="textViewAnswerInPlayZone">Réponse</string>
 
     <!-- Scores -->
     <string name="numberCalcInScores">Nombre d\'opérations :</string>

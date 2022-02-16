@@ -15,6 +15,7 @@
     <!-- Play Zone -->
     <string name="btnVerifyInPlayZone">Verify</string>
     <string name="message_valeur_null">no value entered</string>
+    <string name="textViewAnswerInPlayZone">Answer</string>
 
     <!-- Scores -->
     <string name="numberCalcInScores">number of calcs :</string>

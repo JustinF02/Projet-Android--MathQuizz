@@ -62,9 +62,10 @@ public class PlayZone extends AppCompatActivity{
 
     private void verificationResultat() {
         try {
-            if (txtAnswer.getText() == null) throw new exceptionNull();
+            //a revoir pour l'erreur :
+            if (txtAnswer.getText().equals("")) throw new exceptionNull();
             answer = Double.valueOf(txtAnswer.getText().toString()).doubleValue();
-            if (resultatCorrect == answer) {
+            if (resultatCorrect.equals(answer)) {
                 txtAnswer.setBackgroundResource(R.color.green);
             } else {
                 txtAnswer.setBackgroundResource(R.color.red);
