@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Main Zone -->
+    <string name="btnPlayInMain">Jouer</string>
+    <string name="btnScoresInMain">Scores</string>
+
+    <!-- Difficulty Selection -->
+    <string name="btnEasyInDifficultySelection">Facile</string>
+    <string name="btnMediumInDifficultySelection">Moyen</string>
+    <string name="btnDifficultInDifficultySelection">Difficile</string>
+    <string name="textViewInDifficultySelection">Choisir la difficulté de jeu :</string>
+
+    <!-- Play Zone -->
+    <string name="btnVerifyInPlayZone">Vérifier</string>
+    <string name="message_valeur_null">Aucune valeur saisie</string>
+
+    <!-- Scores -->
+    <string name="numberCalcInScores">Nombre d\'opérations :</string>
+    <string name="SuccessInScores">Succès :</string>
+    <string name="mode_easyInScores">Mode Facile:</string>
+    <string name="mode_mediumInScores">Mode Moyen :</string>
+    <string name="mode_difficultInScores">Mode Difficile :</string>
+    <string name="textviewLastOperationInScores">Dernière Opération :</string>
+
+    <string name="clean_scores">Vider Scores</string>
+
+    <!-- Boutons généraux -->
+    <string name="btnReturn">Retour</string>
+</resources>

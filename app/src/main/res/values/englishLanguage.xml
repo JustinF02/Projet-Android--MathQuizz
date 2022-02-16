@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Main Zone -->
+    <string name="app_name" translatable="false">MathQuizz</string>
+    <string name="btnPlayInMain">Play</string>
+    <string name="btnScoresInMain">Scores</string>
+
+    <!-- Difficulty Selection -->
+    <string name="btnEasyInDifficultySelection">Easy</string>
+    <string name="btnMediumInDifficultySelection">Medium</string>
+    <string name="btnDifficultInDifficultySelection">Difficult</string>
+    <string name="textViewInDifficultySelection">Choose game\'s difficulty :</string>
+
+    <!-- Play Zone -->
+    <string name="btnVerifyInPlayZone">Verify</string>
+    <string name="message_valeur_null">no value entered</string>
+
+    <!-- Scores -->
+    <string name="numberCalcInScores">number of calcs :</string>
+    <string name="SuccessInScores">Success :</string>
+    <string name="mode_easyInScores">Easy Mode :</string>
+    <string name="mode_mediumInScores">Medium Mode :</string>
+    <string name="mode_difficultInScores">Difficult Mode :</string>
+    <string name="textviewLastOperationInScores">Last Operation :</string>
+
+    <string name="clean_scores">Clean Scores</string>
+
+    <!-- Boutons généraux -->
+    <string name="btnReturn">Retour</string>
+
+</resources>
