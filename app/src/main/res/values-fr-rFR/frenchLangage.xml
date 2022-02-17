@@ -20,6 +20,7 @@
     <!-- Scores -->
     <string name="numberCalcInScores">Nombre d\'opérations :</string>
     <string name="SuccessInScores">Succès :</string>
+    <string name="RateInScores">Taux :</string>
     <string name="mode_easyInScores">Mode Facile:</string>
     <string name="mode_mediumInScores">Mode Moyen :</string>
     <string name="mode_difficultInScores">Mode Difficile :</string>

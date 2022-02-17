@@ -3,11 +3,8 @@
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
-
     <color name="DARK_RED">#B92100</color>
     <color name="DARK_RED_lighter">#D12500</color>
-
-
     <color name="ORANGE">#CB6704</color>
     <color name="ORANGE_LIGHTER">#FF7C00</color>
     <color name="teal_200">#FF03DAC5</color>

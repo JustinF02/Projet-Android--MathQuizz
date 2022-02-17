@@ -21,15 +21,14 @@
     <!-- Scores -->
     <string name="numberCalcInScores">number of calcs :</string>
     <string name="SuccessInScores">Success :</string>
+    <string name="RateInScores">Rate :</string>
     <string name="mode_easyInScores">Easy Mode :</string>
     <string name="mode_mediumInScores">Medium Mode :</string>
     <string name="mode_difficultInScores">Difficult Mode :</string>
     <string name="textviewLastOperationInScores">Last Operation :</string>
 
-    <string name="clean_scores">Clean Scores</string>
-
     <!-- Boutons généraux -->
-    <string name="btnReturn">Retour</string>
-
+    <string name="btnReturn">Return</string>
+    <string name="clean_scores">Clean Scores</string>
 
 </resources>
