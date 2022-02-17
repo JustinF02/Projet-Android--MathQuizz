@@ -14,6 +14,7 @@
 
     <!-- Play Zone -->
     <string name="btnVerifyInPlayZone">Verify</string>
+    <string name="btnNextInPlayZone">Next</string>
     <string name="message_valeur_null">no value entered</string>
     <string name="textViewAnswerInPlayZone">Answer</string>
 
@@ -29,5 +30,6 @@
 
     <!-- Boutons généraux -->
     <string name="btnReturn">Retour</string>
+
 
 </resources>

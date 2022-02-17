@@ -29,6 +29,7 @@
             android:ems="10"
             android:hint="@string/textViewAnswerInPlayZone"
             android:inputType="numberDecimal"
+            android:text=""
             android:textAlignment="center"
             android:textSize="40dp" />
 

@@ -38,6 +38,8 @@ public class PlayZone extends AppCompatActivity{
 
     private TextView txtVOperation;
     private EditText txtAnswer;
+    private Button boutonRetour, boutonVerif;
+    private boolean operationValidee = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,10 +51,11 @@ public class PlayZone extends AppCompatActivity{
 
         txtVOperation = findViewById(R.id.textViewCalcul);
 
-        Button boutonRetour = findViewById(R.id.btnRetourMain);
+        boutonRetour = findViewById(R.id.btnRetourMain);
         boutonRetour.setOnClickListener(view -> retourneAuPrecedent());
-        Button boutonVerif = findViewById(R.id.btnVerify);
-        boutonVerif.setOnClickListener(view -> verificationResultat());
+
+        boutonVerif = findViewById(R.id.btnVerify);
+        boutonVerif.setOnClickListener(view -> appuieBouton(boutonVerif));
 
         txtAnswer = findViewById(R.id.editTextNumberDecimal);
 
@@ -60,21 +63,45 @@ public class PlayZone extends AppCompatActivity{
         affichage();
     }
 
+    private void appuieBouton(Button bouton) {
+        if(operationValidee == true){
+            efface();
+            bouton.setText(R.string.btnVerifyInPlayZone);
+        }else {
+            verificationResultat();
+            bouton.setText(R.string.btnNextInPlayZone);
+        }
+    }
+
     private void verificationResultat() {
-        try {
-            //a revoir pour l'erreur :
-            if (txtAnswer.getText().equals("")) throw new exceptionNull();
+                //TODO : Corriger le try catch pour empecher un crash.
+
+                //txtAnswer.getHint().equals(R.string.textViewAnswerInPlayZone)
+
+        try{
             answer = Double.valueOf(txtAnswer.getText().toString()).doubleValue();
             if (resultatCorrect.equals(answer)) {
-                txtAnswer.setBackgroundResource(R.color.green);
+                ajouteResultatCorrect();
             } else {
-                txtAnswer.setBackgroundResource(R.color.red);
+                ajouteResultatFaux();
             }
-            result = resultatCorrect.toString();
-            affichage();
-        }catch(exceptionNull e){
+        }catch (Exception e){
             Toast.makeText(this, getString(R.string.message_valeur_null), Toast.LENGTH_LONG).show();
+            ajouteResultatFaux();
         }
+        result = resultatCorrect.toString();
+        affichage();
+        operationValidee = true;
+    }
+
+    private void ajouteResultatFaux() {
+        txtAnswer.setBackgroundResource(R.color.red);
+        /* TODO : Incrémentation dans la BDD du nbr Calcul.*/
+    }
+
+    private void ajouteResultatCorrect() {
+        txtAnswer.setBackgroundResource(R.color.green);
+        /* TODO : Incrémentation dans la BDD du nbr Calcul et du nbr Succès.*/
     }
 
     private void retourneAuPrecedent() { finish(); }
@@ -112,7 +139,7 @@ public class PlayZone extends AppCompatActivity{
                 resultatCorrect = (double) element1 * element2;
                 break;
         }
-        //Permet de conserver uniquement les dizaines et centaines d'unité :
+        //Permet d'arrondir aux centaines d'unité :
         resultatCorrect *=100;
         int variableTransition = (int)((double)resultatCorrect);
         resultatCorrect = (double)variableTransition / 100;
@@ -143,6 +170,21 @@ public class PlayZone extends AppCompatActivity{
     private void affichage(){
         txtVOperation.setText(element1 + " " + typeOperation.getSymbol() + " " + element2 + " = " + result);
     }
+    private void efface(){
+        result = "?";
+        element1 = 0;
+        element2 = 0;
+        answer = 0.0;
+        resultatCorrect = 0.0;
+        typeOperation = null;
+        operationValidee = false;
+
+        txtAnswer.setText("");
+        txtAnswer.setBackgroundResource(R.color.white);
+        genereUneOperation();
+        affichage();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();

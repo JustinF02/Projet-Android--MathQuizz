@@ -13,6 +13,7 @@
 
     <!-- Play Zone -->
     <string name="btnVerifyInPlayZone">Vérifier</string>
+    <string name="btnNextInPlayZone">Suivant</string>
     <string name="message_valeur_null">Aucune valeur saisie</string>
     <string name="textViewAnswerInPlayZone">Réponse</string>
 
