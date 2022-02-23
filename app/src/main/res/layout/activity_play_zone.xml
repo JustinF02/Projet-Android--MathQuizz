@@ -28,7 +28,7 @@
             android:layout_weight="1"
             android:ems="10"
             android:hint="@string/textViewAnswerInPlayZone"
-            android:inputType="numberDecimal"
+            android:inputType="numberSigned"
             android:text=""
             android:textAlignment="center"
             android:textSize="40dp" />

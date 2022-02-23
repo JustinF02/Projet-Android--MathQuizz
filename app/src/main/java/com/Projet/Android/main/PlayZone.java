@@ -114,14 +114,14 @@ public class PlayZone extends AppCompatActivity{
                 this.typeOperation = TypeOperation.ADD;
                 break;
             case 1:
-                this.typeOperation = TypeOperation.DIVIDE;
+                this.typeOperation = TypeOperation.MULTIPLY;
                 break;
             case 2:
                 this.typeOperation = TypeOperation.SUBSTRACT;
                 break;
-            default:
-                this.typeOperation = TypeOperation.MULTIPLY;
-                break;
+            /*default:
+                this.typeOperation = TypeOperation.DIVIDE;
+                break;*/
         }
     }
     private void calculeUneOperation(){
@@ -129,9 +129,9 @@ public class PlayZone extends AppCompatActivity{
             case ADD:
                 resultatCorrect = (double)element1 + element2;
                 break;
-            case DIVIDE:
+            /*case DIVIDE:
                 resultatCorrect = (double) element1/element2;
-                break;
+                break;*/
             case SUBSTRACT:
                 resultatCorrect = (double) element1-element2;
                 break;
