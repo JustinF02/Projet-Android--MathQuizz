@@ -12,7 +12,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.Projet.Android.exception.exceptionNull;
+import com.Projet.Android.data.Calcul;
+import com.Projet.Android.data.CalculService;
 import com.Projet.Android.typeEnum.TypeOperation;
 import com.Projet.Android.typeEnum.typeDifficulty;
 import com.Projet.Android.R;
@@ -41,6 +42,7 @@ public class PlayZone extends AppCompatActivity{
     private Button boutonRetour, boutonVerif;
     private boolean operationValidee = false;
 
+    CalculService scoreService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,12 +98,39 @@ public class PlayZone extends AppCompatActivity{
 
     private void ajouteResultatFaux() {
         txtAnswer.setBackgroundResource(R.color.red);
-        /* TODO : Incrémentation dans la BDD du nbr Calcul.*/
+        Calcul score = new Calcul();
+        switch(level){
+            case EASY:
+                score.setNbOpEASY(1);
+                break;
+            case MEDIUM:
+                score.setNbOpMEDIUM(1);
+                break;
+            case DIFFICULT:
+                score.setNbOpDIFFICULT(1);
+                break;
+        }
+        scoreService.storeInDb(score);
     }
 
     private void ajouteResultatCorrect() {
         txtAnswer.setBackgroundResource(R.color.green);
-        /* TODO : Incrémentation dans la BDD du nbr Calcul et du nbr Succès.*/
+        Calcul score = new Calcul();
+        switch(level){
+            case EASY:
+                score.setNbOpEASY(1);
+                score.setNbSuccesEASY(1);
+                break;
+            case MEDIUM:
+                score.setNbOpMEDIUM(1);
+                score.setNbSuccesMEDIUM(1);
+                break;
+            case DIFFICULT:
+                score.setNbOpDIFFICULT(1);
+                score.setNbSuccesDIFFICULT(1);
+                break;
+        }
+        scoreService.storeInDb(score);
     }
 
     private void retourneAuPrecedent() { finish(); }
@@ -197,8 +226,9 @@ public class PlayZone extends AppCompatActivity{
         itemClean.setOnMenuItemClickListener(menuItem -> videScore());
         return super.onCreateOptionsMenu(menu);
     }
-    private boolean videScore() {
 
+    private boolean videScore() {
+        scoreService.clearTable();
         return true;
     }
 

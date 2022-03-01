@@ -20,7 +20,7 @@ public class ComputeBaseHelper extends DataBaseHelper {
 
                 CalculDao.cleNbSuccesEASY + " INTEGER NOT NULL, " +
                 CalculDao.cleNbSuccesMEDIUM + " INTEGER NOT NULL, " +
-                CalculDao.cleNbSuccesDIFFICULT + " INTEGER NOT NULL, " +
+                CalculDao.cleNbSuccesDIFFICULT + " INTEGER NOT NULL" +
                 ")";
     }
 

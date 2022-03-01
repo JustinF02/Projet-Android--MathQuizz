@@ -3,9 +3,6 @@ package com.Projet.Android.data;
 import android.content.ContentValues;
 import android.database.Cursor;
 
-import com.Projet.Android.model.Calcul;
-
-
 public class CalculDao  extends BaseDao<Calcul>{
     public CalculDao(DataBaseHelper helper) {
         super(helper);
@@ -19,7 +16,6 @@ public class CalculDao  extends BaseDao<Calcul>{
 
     static String cleNbOpDIFFICULT="cleNbOpDIFFICULT";
     static String cleNbSuccesDIFFICULT="cleNbSuccesDIFFICULT";
-
 
     @Override
     protected String getTableName() {
@@ -41,7 +37,8 @@ public class CalculDao  extends BaseDao<Calcul>{
     @Override
     protected Calcul getEntity(Cursor cursor) {
         Calcul calcul = new Calcul();
-        
+
+
         Integer indexNbOpEASY = cursor.getColumnIndex(cleNbOpEASY);
         Integer indexNbOpMEDIUM = cursor.getColumnIndex(cleNbOpMEDIUM);
         Integer indexNbOpDIFFICULT = cursor.getColumnIndex(cleNbOpDIFFICULT);
