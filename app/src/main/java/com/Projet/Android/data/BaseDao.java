@@ -3,6 +3,7 @@ package com.Projet.Android.data;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.Projet.Android.model.BaseEntity;
 
@@ -59,6 +60,10 @@ public abstract  class BaseDao<T extends BaseEntity> {
     }
 
 
+    public void delete(){
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.delete(getTableName(),null,null);
+    }
     public T lastOrNull() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
@@ -72,7 +77,12 @@ public abstract  class BaseDao<T extends BaseEntity> {
                 null);
 
         cursor.moveToLast();
-        T last = this.getEntity(cursor);
+        T last;
+        try{
+             last = this.getEntity(cursor);
+        }catch (Exception e){
+            last = null;
+        }
         cursor.close();
 
         return last;
