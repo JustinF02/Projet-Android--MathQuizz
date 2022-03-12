@@ -4,6 +4,7 @@
     <!-- Main Zone -->
     <string name="btnPlayInMain">Jouer</string>
     <string name="btnScoresInMain">Scores</string>
+    <string name="btnRanking">Classement</string>
 
     <!-- Difficulty Selection -->
     <string name="btnEasyInDifficultySelection">Facile</string>
@@ -30,4 +31,8 @@
 
     <!-- Boutons généraux -->
     <string name="btnReturn">Retour</string>
+
+    <!-- Menu -->
+    <string name="streak">Série :</string>
+    <string name="aboutUs">A propos</string>
 </resources>

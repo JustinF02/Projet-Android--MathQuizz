@@ -15,7 +15,11 @@ public class Calcul extends BaseEntity{
     }
 
     public void setNbOpEASY(Integer nbOpEASY) {
-        this.nbOpEASY +=nbOpEASY;
+        if(this.nbOpEASY == null){
+            this.nbOpEASY = 1;
+        }else{
+            this.nbOpEASY +=nbOpEASY;
+        }
     }
 
     public Integer getNbSuccesEASY() {
@@ -23,7 +27,11 @@ public class Calcul extends BaseEntity{
     }
 
     public void setNbSuccesEASY(Integer nbSuccesEASY) {
-        this.nbSuccesEASY += nbSuccesEASY;
+        if(this.nbOpEASY == null){
+            this.nbSuccesEASY = 1;
+        }else{
+            this.nbSuccesEASY +=nbOpEASY;
+        }
     }
 
     public Integer getNbOpMEDIUM() {

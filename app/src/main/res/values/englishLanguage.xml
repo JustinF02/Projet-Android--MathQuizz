@@ -5,6 +5,7 @@
     <string name="app_name" translatable="false">MathQuizz</string>
     <string name="btnPlayInMain">Play</string>
     <string name="btnScoresInMain">Scores</string>
+    <string name="btnRanking">Ranking</string>
 
     <!-- Difficulty Selection -->
     <string name="btnEasyInDifficultySelection">Easy</string>
@@ -30,5 +31,9 @@
     <!-- Boutons généraux -->
     <string name="btnReturn">Return</string>
     <string name="clean_scores">Clean Scores</string>
+
+    <!-- Menu -->
+    <string name="streak">Streak :</string>
+    <string name="aboutUs">About us</string>
 
 </resources>

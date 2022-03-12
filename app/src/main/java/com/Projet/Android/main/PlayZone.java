@@ -25,7 +25,7 @@ public class PlayZone extends AppCompatActivity{
     private int element1, element2;
     private Double answer = 0.0;
     private Double resultatCorrect = 0.0;
-
+    private int nbLife = 3, streak = 0;
     private String result = "?";
 
     private int maxiEASY = 100,
@@ -37,6 +37,7 @@ public class PlayZone extends AppCompatActivity{
     private typeDifficulty level;
     private TypeOperation typeOperation = null;
 
+    private TextView TextViewLife;
     private TextView txtVOperation;
     private EditText txtAnswer;
     private Button boutonRetour, boutonVerif;
@@ -47,10 +48,11 @@ public class PlayZone extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_zone);
-        Intent intent =getIntent();
 
+        Intent intent =getIntent();
         level = (typeDifficulty) intent.getSerializableExtra("level");
 
+        TextViewLife = findViewById(R.id.TextViewLife);
         txtVOperation = findViewById(R.id.textViewCalcul);
 
         boutonRetour = findViewById(R.id.btnRetourMain);
@@ -64,9 +66,20 @@ public class PlayZone extends AppCompatActivity{
         genereUneOperation();
         affichage();
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.toolbar_playzone, menu);
+
+        MenuItem itemStreak = menu.findItem(R.id.toolbarStreak);
+
+        MenuItem itemScores = menu.findItem(R.id.toolbarScores);
+        itemScores.setOnMenuItemClickListener(menuItem -> ouvreActivityScore());
+        return super.onCreateOptionsMenu(menu);
+    }
 
     private void appuieBouton(Button bouton) {
-        if(operationValidee == true){
+        if(operationValidee){
             efface();
             bouton.setText(R.string.btnVerifyInPlayZone);
         }else {
@@ -76,16 +89,14 @@ public class PlayZone extends AppCompatActivity{
     }
 
     private void verificationResultat() {
-                //TODO : Corriger le try catch pour empecher un crash.
-
-                //txtAnswer.getHint().equals(R.string.textViewAnswerInPlayZone)
-
         try{
             answer = Double.valueOf(txtAnswer.getText().toString()).doubleValue();
             if (resultatCorrect.equals(answer)) {
                 ajouteResultatCorrect();
+                addPoint();
             } else {
                 ajouteResultatFaux();
+                removeLife();
             }
         }catch (Exception e){
             Toast.makeText(this, getString(R.string.message_valeur_null), Toast.LENGTH_LONG).show();
@@ -96,6 +107,17 @@ public class PlayZone extends AppCompatActivity{
         operationValidee = true;
     }
 
+    private void addPoint() {
+        streak++;
+        //TODO : Ajouter une incrémentation du menu item série
+    }
+
+    private void removeLife() {
+        nbLife--;
+        for(int nb = 1; nb <= nbLife;nb++){
+            TextViewLife.setText(TextViewLife.getText() + "❤ ");
+        }
+    }
     private void ajouteResultatFaux() {
         txtAnswer.setBackgroundResource(R.color.red);
         Calcul score = new Calcul();
@@ -110,7 +132,7 @@ public class PlayZone extends AppCompatActivity{
                 score.setNbOpDIFFICULT(1);
                 break;
         }
-        scoreService.storeInDb(score);
+        //scoreService.storeInDb(score);
     }
 
     private void ajouteResultatCorrect() {
@@ -134,7 +156,6 @@ public class PlayZone extends AppCompatActivity{
     }
 
     private void retourneAuPrecedent() { finish(); }
-
     private void genereUnTypeOperation(){
         Random random = new Random();
         int mainInnocente = random.nextInt(4);
@@ -168,10 +189,10 @@ public class PlayZone extends AppCompatActivity{
                 resultatCorrect = (double) element1 * element2;
                 break;
         }
-        //Permet d'arrondir aux centaines d'unité :
-        resultatCorrect *=100;
-        int variableTransition = (int)((double)resultatCorrect);
-        resultatCorrect = (double)variableTransition / 100;
+        /*Permet d'arrondir aux centaines d'unité :
+        * resultatCorrect *=100;
+        * int variableTransition = (int)((double)resultatCorrect);
+        * resultatCorrect = (double)variableTransition / 100;*/
     }
     private void genereUneOperation(){
         Random random = new Random();
@@ -207,25 +228,13 @@ public class PlayZone extends AppCompatActivity{
         resultatCorrect = 0.0;
         typeOperation = null;
         operationValidee = false;
-
         txtAnswer.setText("");
         txtAnswer.setBackgroundResource(R.color.white);
         genereUneOperation();
         affichage();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.toolbar_playzone, menu);
 
-        MenuItem itemScores = menu.findItem(R.id.toolbarScores);
-        itemScores.setOnMenuItemClickListener(menuItem -> ouvreActivityScore());
-
-        MenuItem itemClean = menu.findItem(R.id.toolbarViderScores);
-        itemClean.setOnMenuItemClickListener(menuItem -> videScore());
-        return super.onCreateOptionsMenu(menu);
-    }
 
     private boolean videScore() {
         scoreService.clearTable();
