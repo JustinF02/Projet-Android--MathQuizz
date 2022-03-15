@@ -12,8 +12,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.Projet.Android.data.Calcul;
-import com.Projet.Android.data.CalculService;
+import com.Projet.Android.data.Score;
+import com.Projet.Android.data.ScoreDao;
+import com.Projet.Android.data.ScoreService;
+import com.Projet.Android.data.ComputeBaseHelper;
 import com.Projet.Android.typeEnum.TypeOperation;
 import com.Projet.Android.typeEnum.typeDifficulty;
 import com.Projet.Android.R;
@@ -23,9 +25,10 @@ import java.util.Random;
 public class PlayZone extends AppCompatActivity{
 
     private int element1, element2;
-    private Double answer = 0.0;
-    private Double resultatCorrect = 0.0;
-    private int nbLife = 3, streak = 0;
+    private int answer = 0;
+    private Integer resultatCorrect = 0;
+    private int ConstMaxLife = 3;
+    private int nbLife = ConstMaxLife, streak = 0;
     private String result = "?";
 
     private int maxiEASY = 100,
@@ -43,12 +46,15 @@ public class PlayZone extends AppCompatActivity{
     private Button boutonRetour, boutonVerif;
     private boolean operationValidee = false;
 
-    CalculService scoreService;
+    private MenuItem itemStreak;
+
+    ScoreService scoreService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_zone);
 
+        scoreService = new ScoreService(new ScoreDao(new ComputeBaseHelper(this)));
         Intent intent =getIntent();
         level = (typeDifficulty) intent.getSerializableExtra("level");
 
@@ -56,7 +62,7 @@ public class PlayZone extends AppCompatActivity{
         txtVOperation = findViewById(R.id.textViewCalcul);
 
         boutonRetour = findViewById(R.id.btnRetourMain);
-        boutonRetour.setOnClickListener(view -> retourneAuPrecedent());
+        boutonRetour.setOnClickListener(view -> FinishGame());
 
         boutonVerif = findViewById(R.id.btnVerify);
         boutonVerif.setOnClickListener(view -> appuieBouton(boutonVerif));
@@ -65,13 +71,14 @@ public class PlayZone extends AppCompatActivity{
 
         genereUneOperation();
         affichage();
+        scoreService.getLast();
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.toolbar_playzone, menu);
 
-        MenuItem itemStreak = menu.findItem(R.id.toolbarStreak);
+        itemStreak = menu.findItem(R.id.toolbarStreak);
 
         MenuItem itemScores = menu.findItem(R.id.toolbarScores);
         itemScores.setOnMenuItemClickListener(menuItem -> ouvreActivityScore());
@@ -80,6 +87,7 @@ public class PlayZone extends AppCompatActivity{
 
     private void appuieBouton(Button bouton) {
         if(operationValidee){
+            if(nbLife <= 0){FinishGame();}
             efface();
             bouton.setText(R.string.btnVerifyInPlayZone);
         }else {
@@ -90,15 +98,14 @@ public class PlayZone extends AppCompatActivity{
 
     private void verificationResultat() {
         try{
-            answer = Double.valueOf(txtAnswer.getText().toString()).doubleValue();
+            answer = Integer.valueOf(txtAnswer.getText().toString()).intValue();
             if (resultatCorrect.equals(answer)) {
                 ajouteResultatCorrect();
-                addPoint();
             } else {
                 ajouteResultatFaux();
-                removeLife();
             }
-        }catch (Exception e){
+        }catch (Exception e) {
+            e.printStackTrace();
             Toast.makeText(this, getString(R.string.message_valeur_null), Toast.LENGTH_LONG).show();
             ajouteResultatFaux();
         }
@@ -107,20 +114,15 @@ public class PlayZone extends AppCompatActivity{
         operationValidee = true;
     }
 
-    private void addPoint() {
-        streak++;
-        //TODO : Ajouter une incrémentation du menu item série
-    }
-
-    private void removeLife() {
+    private void ajouteResultatFaux() {
         nbLife--;
+        TextViewLife.setText("");
         for(int nb = 1; nb <= nbLife;nb++){
             TextViewLife.setText(TextViewLife.getText() + "❤ ");
         }
-    }
-    private void ajouteResultatFaux() {
+
         txtAnswer.setBackgroundResource(R.color.red);
-        Calcul score = new Calcul();
+        Score score = new Score();
         switch(level){
             case EASY:
                 score.setNbOpEASY(1);
@@ -136,8 +138,12 @@ public class PlayZone extends AppCompatActivity{
     }
 
     private void ajouteResultatCorrect() {
+        streak++;
+
+        itemStreak.setTitle(getString(R.string.streak)+streak);
+
         txtAnswer.setBackgroundResource(R.color.green);
-        Calcul score = new Calcul();
+        Score score = new Score();
         switch(level){
             case EASY:
                 score.setNbOpEASY(1);
@@ -152,10 +158,10 @@ public class PlayZone extends AppCompatActivity{
                 score.setNbSuccesDIFFICULT(1);
                 break;
         }
-        scoreService.storeInDb(score);
+        //scoreService.storeInDb(score);
     }
 
-    private void retourneAuPrecedent() { finish(); }
+    private void FinishGame() { finish(); }
     private void genereUnTypeOperation(){
         Random random = new Random();
         int mainInnocente = random.nextInt(4);
@@ -177,16 +183,16 @@ public class PlayZone extends AppCompatActivity{
     private void calculeUneOperation(){
         switch (typeOperation){
             case ADD:
-                resultatCorrect = (double)element1 + element2;
+                resultatCorrect = element1 + element2;
                 break;
             /*case DIVIDE:
                 resultatCorrect = (double) element1/element2;
                 break;*/
             case SUBSTRACT:
-                resultatCorrect = (double) element1-element2;
+                resultatCorrect = element1-element2;
                 break;
             case MULTIPLY:
-                resultatCorrect = (double) element1 * element2;
+                resultatCorrect = element1 * element2;
                 break;
         }
         /*Permet d'arrondir aux centaines d'unité :
@@ -224,8 +230,8 @@ public class PlayZone extends AppCompatActivity{
         result = "?";
         element1 = 0;
         element2 = 0;
-        answer = 0.0;
-        resultatCorrect = 0.0;
+        answer = 0;
+        resultatCorrect = 0;
         typeOperation = null;
         operationValidee = false;
         txtAnswer.setText("");
@@ -233,16 +239,13 @@ public class PlayZone extends AppCompatActivity{
         genereUneOperation();
         affichage();
     }
-
-
-
     private boolean videScore() {
         scoreService.clearTable();
         return true;
     }
 
     private boolean ouvreActivityScore() {
-        Intent intent = new Intent(this, Scores.class);
+        Intent intent = new Intent(this, ScoresActivity.class);
         startActivity(intent);
         return true;
     }

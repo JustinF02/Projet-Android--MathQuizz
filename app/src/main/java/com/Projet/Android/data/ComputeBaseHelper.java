@@ -14,13 +14,13 @@ public class ComputeBaseHelper extends DataBaseHelper {
 
         return "CREATE TABLE IF NOT EXISTS historique (" +
                 "id" + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                CalculDao.cleNbOpEASY + " INTEGER NOT NULL, " +
-                CalculDao.cleNbOpMEDIUM + " INTEGER NOT NULL, " +
-                CalculDao.cleNbOpDIFFICULT + " INTEGER NOT NULL, " +
+                ScoreDao.cleNbOpEASY + " INTEGER NOT NULL, " +
+                ScoreDao.cleNbOpMEDIUM + " INTEGER NOT NULL, " +
+                ScoreDao.cleNbOpDIFFICULT + " INTEGER NOT NULL, " +
 
-                CalculDao.cleNbSuccesEASY + " INTEGER NOT NULL, " +
-                CalculDao.cleNbSuccesMEDIUM + " INTEGER NOT NULL, " +
-                CalculDao.cleNbSuccesDIFFICULT + " INTEGER NOT NULL" +
+                ScoreDao.cleNbSuccesEASY + " INTEGER NOT NULL, " +
+                ScoreDao.cleNbSuccesMEDIUM + " INTEGER NOT NULL, " +
+                ScoreDao.cleNbSuccesDIFFICULT + " INTEGER NOT NULL" +
                 ")";
     }
 

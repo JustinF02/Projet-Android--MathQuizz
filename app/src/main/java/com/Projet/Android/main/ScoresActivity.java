@@ -2,7 +2,6 @@ package com.Projet.Android.main;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -11,17 +10,15 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.Projet.Android.R;
-import com.Projet.Android.data.Calcul;
-import com.Projet.Android.data.CalculDao;
-import com.Projet.Android.data.CalculService;
+import com.Projet.Android.data.Score;
+import com.Projet.Android.data.ScoreDao;
+import com.Projet.Android.data.ScoreService;
 import com.Projet.Android.data.ComputeBaseHelper;
 
-import org.w3c.dom.Text;
 
+public class ScoresActivity extends AppCompatActivity {
 
-public class Scores extends AppCompatActivity {
-
-    private CalculService scoreservice;
+    private ScoreService scoreservice;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,9 +38,9 @@ public class Scores extends AppCompatActivity {
         TextView textViewMEDIUMRate = findViewById(R.id.textViewMEDIUMTauxResult);
         TextView textViewDIFFICULTRate = findViewById(R.id.textViewDIFFICULTTauxResult);
 
-        scoreservice = new CalculService(new CalculDao(new ComputeBaseHelper(this)));
+        scoreservice = new ScoreService(new ScoreDao(new ComputeBaseHelper(this)));
 
-        Calcul dernierScore = scoreservice.getLast();
+        Score dernierScore = scoreservice.getLast();
         if(dernierScore == null){
             textViewEASYNombreCalcul.setText("");
             textViewMEDIUMNombreCalcul.setText("");
@@ -57,17 +54,26 @@ public class Scores extends AppCompatActivity {
             textViewMEDIUMRate.setText("");
             textViewDIFFICULTRate.setText("");
         }else{
-            textViewEASYNombreCalcul.setText(dernierScore.getNbOpEASY());
-            textViewMEDIUMNombreCalcul.setText(dernierScore.getNbOpMEDIUM());
-            textViewDIFFICULTNombreCalcul.setText(dernierScore.getNbOpDIFFICULT());
+            textViewEASYNombreCalcul.setText(dernierScore.getNbOpEASY().toString());
+            textViewMEDIUMNombreCalcul.setText(dernierScore.getNbOpMEDIUM().toString());
+            textViewDIFFICULTNombreCalcul.setText(dernierScore.getNbOpDIFFICULT().toString());
 
-            textViewEASYSuccess.setText(dernierScore.getNbSuccesEASY());
-            textViewMEDIUMSuccess.setText(dernierScore.getNbSuccesMEDIUM());
-            textViewDIFFICULTSuccess.setText(dernierScore.getNbSuccesDIFFICULT());
+            textViewEASYSuccess.setText(dernierScore.getNbSuccesEASY().toString());
+            textViewMEDIUMSuccess.setText(dernierScore.getNbSuccesMEDIUM().toString());
+            textViewDIFFICULTSuccess.setText(dernierScore.getNbSuccesDIFFICULT().toString());
 
-            textViewEASYRate.setText((dernierScore.getNbSuccesEASY()/dernierScore.getNbOpEASY())*100);
-            textViewMEDIUMRate.setText((dernierScore.getNbSuccesMEDIUM()/dernierScore.getNbOpMEDIUM())*100);
-            textViewDIFFICULTRate.setText((dernierScore.getNbSuccesDIFFICULT()/dernierScore.getNbOpDIFFICULT())*100);
+            Double nbOpEASY = Double.valueOf(dernierScore.getNbOpEASY());
+            Double nbSucEASY =  Double.valueOf(dernierScore.getNbSuccesEASY());
+
+            Double nbOpMEDIUM = Double.valueOf(dernierScore.getNbOpMEDIUM());
+            Double nbSucMEDIUM =  Double.valueOf(dernierScore.getNbSuccesMEDIUM());
+
+            Double nbOpDIFFICULT = Double.valueOf(dernierScore.getNbOpDIFFICULT());
+            Double nbSucDIFFICULT =  Double.valueOf(dernierScore.getNbSuccesDIFFICULT());
+
+            textViewEASYRate.setText(String.valueOf((nbOpEASY/nbSucEASY)*100));
+            textViewMEDIUMRate.setText(String.valueOf((nbOpMEDIUM/nbSucMEDIUM)*100));
+            textViewDIFFICULTRate.setText(String.valueOf((nbOpDIFFICULT/nbSucDIFFICULT)*100));
         }
     }
 

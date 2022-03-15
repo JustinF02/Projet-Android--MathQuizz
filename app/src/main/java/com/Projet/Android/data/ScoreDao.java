@@ -3,8 +3,8 @@ package com.Projet.Android.data;
 import android.content.ContentValues;
 import android.database.Cursor;
 
-public class CalculDao  extends BaseDao<Calcul>{
-    public CalculDao(DataBaseHelper helper) {
+public class ScoreDao extends BaseDao<Score>{
+    public ScoreDao(DataBaseHelper helper) {
         super(helper);
     }
 
@@ -23,7 +23,7 @@ public class CalculDao  extends BaseDao<Calcul>{
     }
 
     @Override
-    protected void putValues(ContentValues values, Calcul entity) {
+    protected void putValues(ContentValues values, Score entity) {
         values.put(cleNbOpEASY, entity.getNbOpEASY());
         values.put(cleNbSuccesEASY, entity.getNbSuccesEASY());
 
@@ -35,8 +35,8 @@ public class CalculDao  extends BaseDao<Calcul>{
     }
 
     @Override
-    protected Calcul getEntity(Cursor cursor) {
-        Calcul calcul = new Calcul();
+    protected Score getEntity(Cursor cursor) {
+        Score score = new Score();
 
 
         Integer indexNbOpEASY = cursor.getColumnIndex(cleNbOpEASY);
@@ -48,14 +48,14 @@ public class CalculDao  extends BaseDao<Calcul>{
         Integer indexNbSuccesDIFFICULT = cursor.getColumnIndex(cleNbSuccesDIFFICULT);
 
 
-        calcul.setNbOpEASY(cursor.getInt(indexNbOpEASY));
-        calcul.setNbOpMEDIUM(cursor.getInt(indexNbOpMEDIUM));
-        calcul.setNbOpDIFFICULT(cursor.getInt(indexNbOpDIFFICULT));
+        score.setNbOpEASY(cursor.getInt(indexNbOpEASY));
+        score.setNbOpMEDIUM(cursor.getInt(indexNbOpMEDIUM));
+        score.setNbOpDIFFICULT(cursor.getInt(indexNbOpDIFFICULT));
 
-        calcul.setNbSuccesEASY(cursor.getInt(indexNbSuccesEASY));
-        calcul.setNbSuccesMEDIUM(cursor.getInt(indexNbSuccesMEDIUM));
-        calcul.setNbSuccesDIFFICULT(cursor.getInt(indexNbSuccesDIFFICULT));
+        score.setNbSuccesEASY(cursor.getInt(indexNbSuccesEASY));
+        score.setNbSuccesMEDIUM(cursor.getInt(indexNbSuccesMEDIUM));
+        score.setNbSuccesDIFFICULT(cursor.getInt(indexNbSuccesDIFFICULT));
 
-        return calcul;
+        return score;
     }
 }

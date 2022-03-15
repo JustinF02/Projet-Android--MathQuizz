@@ -1,37 +1,30 @@
 package com.Projet.Android.data;
 
-public class Calcul extends BaseEntity{
-    Integer nbOpEASY;
-    Integer nbSuccesEASY;
+public class Score extends BaseEntity{
 
-    Integer nbOpMEDIUM;
-    Integer nbSuccesMEDIUM;
+    Integer nbOpEASY=0;
+    Integer nbSuccesEASY=0;
 
-    Integer nbOpDIFFICULT;
-    Integer nbSuccesDifficult;
+    Integer nbOpMEDIUM=0;
+    Integer nbSuccesMEDIUM =0;
+
+    Integer nbOpDIFFICULT =0;
+    Integer nbSuccesDifficult = 0;
 
     public Integer getNbOpEASY() {
         return nbOpEASY;
     }
 
-    public void setNbOpEASY(Integer nbOpEASY) {
-        if(this.nbOpEASY == null){
-            this.nbOpEASY = 1;
-        }else{
+    public void setNbOpEASY(int nbOpEASY) {
             this.nbOpEASY +=nbOpEASY;
-        }
     }
 
     public Integer getNbSuccesEASY() {
         return nbSuccesEASY;
     }
 
-    public void setNbSuccesEASY(Integer nbSuccesEASY) {
-        if(this.nbOpEASY == null){
-            this.nbSuccesEASY = 1;
-        }else{
-            this.nbSuccesEASY +=nbOpEASY;
-        }
+    public void setNbSuccesEASY(int nbSuccesEASY) {
+            this.nbSuccesEASY +=nbSuccesEASY;
     }
 
     public Integer getNbOpMEDIUM() {

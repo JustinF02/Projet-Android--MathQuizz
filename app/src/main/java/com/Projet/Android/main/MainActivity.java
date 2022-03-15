@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void ouvreActivityScore() {
-        Intent intent = new Intent(this, Scores.class);
+        Intent intent = new Intent(this, ScoresActivity.class);
         startActivity(intent);
     }
 

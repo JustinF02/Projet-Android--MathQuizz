@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MathGame">
         <activity
-            android:name=".main.Scores"
+            android:name=".main.ScoresActivity"
             android:exported="false" />
         <activity
             android:name=".main.DifficultySelection"
