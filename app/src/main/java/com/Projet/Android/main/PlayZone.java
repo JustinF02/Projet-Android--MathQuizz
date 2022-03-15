@@ -49,6 +49,15 @@ public class PlayZone extends AppCompatActivity{
     private MenuItem itemStreak;
 
     ScoreService scoreService;
+
+    private int nbOpEASY = 0;
+    private int nbSucEASY = 0;
+    private int nbOpMEDIUM = 0;
+    private int nbSucMEDIUM = 0;
+    private int nbOpDIFFICULT = 0;
+    private int nbSucDIFFICULT = 0;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,7 +80,13 @@ public class PlayZone extends AppCompatActivity{
 
         genereUneOperation();
         affichage();
-        scoreService.getLast();
+        Score dernierScore = scoreService.getLast();
+        nbOpEASY = dernierScore.getNbOpEASY();
+        nbSucEASY = dernierScore.getNbSuccesEASY();
+        nbOpMEDIUM = dernierScore.getNbOpMEDIUM();
+        nbSucMEDIUM = dernierScore.getNbSuccesMEDIUM();
+        nbOpDIFFICULT = dernierScore.getNbOpDIFFICULT();
+        nbSucDIFFICULT = dernierScore.getNbSuccesDIFFICULT();
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -120,48 +135,44 @@ public class PlayZone extends AppCompatActivity{
         for(int nb = 1; nb <= nbLife;nb++){
             TextViewLife.setText(TextViewLife.getText() + "❤ ");
         }
-
         txtAnswer.setBackgroundResource(R.color.red);
-        Score score = new Score();
         switch(level){
             case EASY:
-                score.setNbOpEASY(1);
+                nbOpEASY +=1;
                 break;
             case MEDIUM:
-                score.setNbOpMEDIUM(1);
+                nbOpMEDIUM +=1;
                 break;
             case DIFFICULT:
-                score.setNbOpDIFFICULT(1);
+                nbOpDIFFICULT +=1;
                 break;
         }
-        //scoreService.storeInDb(score);
     }
 
     private void ajouteResultatCorrect() {
         streak++;
-
         itemStreak.setTitle(getString(R.string.streak)+streak);
-
         txtAnswer.setBackgroundResource(R.color.green);
-        Score score = new Score();
         switch(level){
             case EASY:
-                score.setNbOpEASY(1);
-                score.setNbSuccesEASY(1);
+                nbOpEASY+=1;
+                nbSucEASY +=1;
                 break;
             case MEDIUM:
-                score.setNbOpMEDIUM(1);
-                score.setNbSuccesMEDIUM(1);
+                nbOpMEDIUM+=1;
+                nbSucMEDIUM+=1;
                 break;
             case DIFFICULT:
-                score.setNbOpDIFFICULT(1);
-                score.setNbSuccesDIFFICULT(1);
+                nbOpDIFFICULT+=1;
+                nbSucDIFFICULT+=1;
                 break;
         }
-        //scoreService.storeInDb(score);
     }
 
-    private void FinishGame() { finish(); }
+    private void FinishGame() {
+        //TODO : UPDATE IN DB. VALUES NbOP & nbSuc etc etc
+        //TODO : UPDATE AUSSI DANS LA METHODE ouvreActivityScore().
+        finish(); }
     private void genereUnTypeOperation(){
         Random random = new Random();
         int mainInnocente = random.nextInt(4);
@@ -239,12 +250,9 @@ public class PlayZone extends AppCompatActivity{
         genereUneOperation();
         affichage();
     }
-    private boolean videScore() {
-        scoreService.clearTable();
-        return true;
-    }
 
     private boolean ouvreActivityScore() {
+        //TODO UPDATE IN DB HERE TOO
         Intent intent = new Intent(this, ScoresActivity.class);
         startActivity(intent);
         return true;
