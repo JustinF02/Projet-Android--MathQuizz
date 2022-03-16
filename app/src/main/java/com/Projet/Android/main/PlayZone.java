@@ -5,11 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Layout;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -213,9 +216,11 @@ public class PlayZone extends AppCompatActivity{
 
     private void ajouteResultatFaux() {
         nbLife--;
+        streak = 0;
         TextViewLife.setText("");
         for(int nb = 1; nb <= nbLife;nb++){
             TextViewLife.setText(TextViewLife.getText() + "❤ ");
+            //TextViewLife.setGravity(Gravity.CENTER);
         }
         txtAnswer.setBackgroundResource(R.color.red);
         switch(level){

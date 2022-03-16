@@ -15,10 +15,9 @@
             android:id="@+id/TextViewLife"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.1"
+            android:gravity="center"
             android:text="❤ ❤ ❤"
-            android:textSize="50dp"
-            tools:textAlignment="center" />
+            android:textSize="50dp" />
 
         <TextView
             android:id="@+id/textViewCalcul"
