@@ -29,12 +29,18 @@ public abstract  class BaseDao<T extends BaseEntity> {
 
         ContentValues values = new ContentValues();
         putValues(values, entity);
-
         long newRowId = db.insert(getTableName(), null, values);
         entity.id = newRowId;
         return entity;
     }
 
+    protected  void updateQuery(T values){
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        putValues(cv,values);
+        db.update(getTableName(),cv,null,null);
+
+    }
     protected List<T> query(String selection, String[] selectionArgs, String sortOrder){
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 

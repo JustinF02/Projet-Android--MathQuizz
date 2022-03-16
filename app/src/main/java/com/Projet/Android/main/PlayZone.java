@@ -268,25 +268,19 @@ public class PlayZone extends AppCompatActivity{
         values = new ContentValues();
         switch(level){
             case EASY:
-                values.put("cleNbOpEASY", nbOpEASY);
-                values.put("cleNbSuccesEASY", nbSucEASY);
                 score.setNbOpEASY(nbOpEASY);
                 score.setNbSuccesEASY(nbSucEASY);
                 break;
             case MEDIUM:
-                values.put("cleNbOpMEDIUM", nbOpMEDIUM);
-                values.put("cleNbSuccesMEDIUM", nbSucMEDIUM);
                 score.setNbOpMEDIUM(nbOpMEDIUM);
                 score.setNbSuccesMEDIUM(nbSucMEDIUM);
                 break;
             case DIFFICULT:
-                values.put("cleNbOpDIFFICULT", nbOpDIFFICULT);
-                values.put("cleNbSuccesDIFFICULT", nbSucDIFFICULT);
                 score.setNbOpDIFFICULT(nbOpDIFFICULT);
                 score.setNbSuccesDIFFICULT(nbSucDIFFICULT);
                 break;
         }
-        scoreService.updateInDb(values, score);
+        scoreService.updateInDb(score);
     }
 
     private boolean ouvreActivityScore() {

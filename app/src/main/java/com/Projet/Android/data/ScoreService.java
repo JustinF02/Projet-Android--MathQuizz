@@ -17,7 +17,9 @@ public class ScoreService {
         scoreDao.create(score);
     }
 
-    public void updateInDb(ContentValues values, Score score){scoreDao.putValues(values, score);}
+    public void updateInDb(Score score){
+        scoreDao.updateQuery(score);
+    }
 
     public Score getLast(){
         return  scoreDao.lastOrNull();
