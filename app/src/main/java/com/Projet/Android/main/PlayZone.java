@@ -82,13 +82,26 @@ public class PlayZone extends AppCompatActivity{
 
         genereUneOperation();
         affichage();
-        Score dernierScore = scoreService.getLast();
-        nbOpEASY = dernierScore.getNbOpEASY();
-        nbSucEASY = dernierScore.getNbSuccesEASY();
-        nbOpMEDIUM = dernierScore.getNbOpMEDIUM();
-        nbSucMEDIUM = dernierScore.getNbSuccesMEDIUM();
-        nbOpDIFFICULT = dernierScore.getNbOpDIFFICULT();
-        nbSucDIFFICULT = dernierScore.getNbSuccesDIFFICULT();
+        try{
+            Score dernierScore = scoreService.getLast();
+            nbOpEASY = dernierScore.getNbOpEASY();
+            nbSucEASY = dernierScore.getNbSuccesEASY();
+            nbOpMEDIUM = dernierScore.getNbOpMEDIUM();
+            nbSucMEDIUM = dernierScore.getNbSuccesMEDIUM();
+            nbOpDIFFICULT = dernierScore.getNbOpDIFFICULT();
+            nbSucDIFFICULT = dernierScore.getNbSuccesDIFFICULT();
+        }catch(Exception e){
+            Score initScore = new Score();
+            initScore.setNbOpEASY(0);
+            initScore.setNbOpMEDIUM(0);
+            initScore.setNbOpDIFFICULT(0);
+
+            initScore.setNbSuccesEASY(0);
+            initScore.setNbSuccesMEDIUM(0);
+            initScore.setNbSuccesDIFFICULT(0);
+            scoreService.storeInDb(initScore);
+        }
+        ;
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
