@@ -14,11 +14,15 @@
             android:name=".main.ScoresActivity"
             android:exported="false" />
         <activity
-            android:name=".main.DifficultySelection"
+            android:name=".main.DifficultySelectionActivity"
             android:exported="false" />
         <activity
-            android:name=".main.PlayZone"
+            android:name=".main.PlayZoneActivity"
             android:exported="false" />
+        <activity
+            android:name=".main.AboutUsActivity"
+            android:exported="false"/>
+
         <activity
             android:name=".main.MainActivity"
             android:exported="true">

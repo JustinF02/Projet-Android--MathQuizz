@@ -35,4 +35,7 @@
     <!-- Menu -->
     <string name="streak">Série :</string>
     <string name="aboutUs">A propos</string>
+
+    <!--About Us -->
+    <string name="InformationsDev">Projet DUT2 Informatique classe d\'Android</string>
 </resources>

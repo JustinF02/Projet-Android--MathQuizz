@@ -9,7 +9,7 @@ import android.widget.Button;
 import com.Projet.Android.typeEnum.typeDifficulty;
 import com.Projet.Android.R;
 
-public class DifficultySelection extends AppCompatActivity {
+public class DifficultySelectionActivity extends AppCompatActivity {
 
     private typeDifficulty level = null;
     @Override
@@ -49,7 +49,7 @@ public class DifficultySelection extends AppCompatActivity {
     }
 
     private void ouvrePlayZone(typeDifficulty level) {
-        Intent intent = new Intent(this, PlayZone.class);
+        Intent intent = new Intent(this, PlayZoneActivity.class);
         intent.putExtra("level", level);
         startActivity(intent);
     }

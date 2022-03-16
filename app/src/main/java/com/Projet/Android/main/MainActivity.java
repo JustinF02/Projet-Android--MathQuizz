@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean ouvreActivityAboutUs() {
-        Intent intent = new Intent(this, aboutus.class);
+        Intent intent = new Intent(this, AboutUsActivity.class);
         startActivity(intent);
         return true;
     }
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void ouvreActivityDifficultySelection() {
-        Intent intent = new Intent(this, DifficultySelection.class);
+        Intent intent = new Intent(this, DifficultySelectionActivity.class);
         startActivity(intent);
     }
 }

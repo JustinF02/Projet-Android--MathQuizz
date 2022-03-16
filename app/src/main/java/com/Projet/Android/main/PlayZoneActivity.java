@@ -26,7 +26,7 @@ import com.Projet.Android.R;
 
 import java.util.Random;
 
-public class PlayZone extends AppCompatActivity{
+public class PlayZoneActivity extends AppCompatActivity{
 
     private int element1, element2;
     private int answer = 0;
@@ -104,7 +104,6 @@ public class PlayZone extends AppCompatActivity{
             initScore.setNbSuccesDIFFICULT(0);
             scoreService.storeInDb(initScore);
         }
-        ;
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
