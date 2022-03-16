@@ -1,5 +1,7 @@
 package com.Projet.Android.data;
 
+import android.content.ContentValues;
+
 public class ScoreService {
     private ScoreDao scoreDao;
 
@@ -14,6 +16,8 @@ public class ScoreService {
     public void storeInDb(Score score){
         scoreDao.create(score);
     }
+
+    public void updateInDb(ContentValues values, Score score){scoreDao.putValues(values, score);}
 
     public Score getLast(){
         return  scoreDao.lastOrNull();

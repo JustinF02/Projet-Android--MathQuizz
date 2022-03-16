@@ -2,6 +2,7 @@ package com.Projet.Android.main;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -48,7 +49,8 @@ public class PlayZone extends AppCompatActivity{
 
     private MenuItem itemStreak;
 
-    ScoreService scoreService;
+    private ScoreService scoreService;
+    private ContentValues values;
 
     private int nbOpEASY = 0;
     private int nbSucEASY = 0;
@@ -169,8 +171,35 @@ public class PlayZone extends AppCompatActivity{
         }
     }
 
+    private void updateBDD(){
+        Score score = new Score();
+        values = new ContentValues();
+        switch(level){
+            case EASY:
+                values.put("cleNbOpEASY", nbOpEASY);
+                values.put("cleNbSuccesEASY", nbSucEASY);
+                score.setNbOpEASY(nbOpEASY);
+                score.setNbSuccesEASY(nbSucEASY);
+                break;
+            case MEDIUM:
+                values.put("cleNbOpMEDIUM", nbOpMEDIUM);
+                values.put("cleNbSuccesMEDIUM", nbSucMEDIUM);
+                score.setNbOpMEDIUM(nbOpMEDIUM);
+                score.setNbSuccesMEDIUM(nbSucMEDIUM);
+                break;
+            case DIFFICULT:
+                values.put("cleNbOpDIFFICULT", nbOpDIFFICULT);
+                values.put("cleNbSuccesDIFFICULT", nbSucDIFFICULT);
+                score.setNbOpDIFFICULT(nbOpDIFFICULT);
+                score.setNbSuccesDIFFICULT(nbSucDIFFICULT);
+                break;
+        }
+        scoreService.updateInDb(values, score);
+    }
     private void FinishGame() {
+        updateBDD();
         //TODO : UPDATE IN DB. VALUES NbOP & nbSuc etc etc
+
         //TODO : UPDATE AUSSI DANS LA METHODE ouvreActivityScore().
         finish(); }
     private void genereUnTypeOperation(){
@@ -253,6 +282,7 @@ public class PlayZone extends AppCompatActivity{
 
     private boolean ouvreActivityScore() {
         //TODO UPDATE IN DB HERE TOO
+        updateBDD();
         Intent intent = new Intent(this, ScoresActivity.class);
         startActivity(intent);
         return true;
