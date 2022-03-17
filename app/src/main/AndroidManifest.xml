@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MathGame">
         <activity
+            android:name=".main.AboutUsActivity"
+            android:exported="false" />
+        <activity
             android:name=".main.ScoresActivity"
             android:exported="false" />
         <activity
@@ -19,10 +22,6 @@
         <activity
             android:name=".main.PlayZoneActivity"
             android:exported="false" />
-        <activity
-            android:name=".main.AboutUsActivity"
-            android:exported="false"/>
-
         <activity
             android:name=".main.MainActivity"
             android:exported="true">

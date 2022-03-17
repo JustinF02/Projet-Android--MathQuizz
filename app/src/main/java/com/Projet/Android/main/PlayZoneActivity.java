@@ -116,7 +116,28 @@ public class PlayZoneActivity extends AppCompatActivity{
         itemScores.setOnMenuItemClickListener(menuItem -> ouvreActivityScore());
         return super.onCreateOptionsMenu(menu);
     }
+    private void genereUneOperation(){
+        Random random = new Random();
+        switch(level){
+            case EASY:
+                element1 = random.nextInt(maxiEASY + 1);
+                element2 = random.nextInt(maxiEASY + 1);
+                typeOperation = TypeOperation.ADD;
 
+                break;
+            case MEDIUM:
+                element1 = miniMedium + random.nextInt(maxiMedium);
+                element2 = miniMedium + random.nextInt(maxiMedium);
+                genereUnTypeOperation();
+                break;
+            case DIFFICULT:
+                element1 = miniDifficult + random.nextInt(maxiDifficult);
+                element2 = miniDifficult + random.nextInt(maxiDifficult);
+                genereUnTypeOperation();
+                break;
+        }
+        calculeUneOperation();
+    }
     private void genereUnTypeOperation(){
         Random random = new Random();
         int mainInnocente = random.nextInt(4);
@@ -159,29 +180,6 @@ public class PlayZoneActivity extends AppCompatActivity{
          * resultatCorrect *=100;
          * int variableTransition = (int)((double)resultatCorrect);
          * resultatCorrect = (double)variableTransition / 100;*/
-    }
-    private void genereUneOperation(){
-        Random random = new Random();
-        switch(level){
-            case EASY:
-                element1 = random.nextInt(maxiEASY + 1);
-                element2 = random.nextInt(maxiEASY + 1);
-                typeOperation = TypeOperation.ADD;
-                calculeUneOperation();
-                break;
-            case MEDIUM:
-                element1 = miniMedium + random.nextInt(maxiMedium);
-                element2 = miniMedium + random.nextInt(maxiMedium);
-                genereUnTypeOperation();
-                calculeUneOperation();
-                break;
-            case DIFFICULT:
-                element1 = miniDifficult + random.nextInt(maxiDifficult);
-                element2 = miniDifficult + random.nextInt(maxiDifficult);
-                genereUnTypeOperation();
-                calculeUneOperation();
-                break;
-        }
     }
 
     private void appuieBouton(Button bouton) {
@@ -255,17 +253,11 @@ public class PlayZoneActivity extends AppCompatActivity{
         }
     }
 
-
     private void FinishGame() {
         updateBDD();
-        //TODO : UPDATE IN DB. VALUES NbOP & nbSuc etc etc
-
-        //TODO : UPDATE AUSSI DANS LA METHODE ouvreActivityScore().
-        finish(); }
-
-    private void affichage(){
-        txtVOperation.setText(element1 + " " + typeOperation.getSymbol() + " " + element2 + " = " + result);
+        finish();
     }
+
     private void efface(){
         result = "?";
         element1 = 0;
@@ -278,6 +270,15 @@ public class PlayZoneActivity extends AppCompatActivity{
         txtAnswer.setBackgroundResource(R.color.white);
         genereUneOperation();
         affichage();
+    }
+    private void affichage(){
+        try{
+            txtVOperation.setText(element1 + " " + typeOperation.getSymbol() + " " + element2 + " = " + result);
+        }catch(Exception e){
+            genereUneOperation();
+            txtVOperation.setText(element1 + " " + typeOperation.getSymbol() + " " + element2 + " = " + result);
+        }
+
     }
 
     private void updateBDD(){

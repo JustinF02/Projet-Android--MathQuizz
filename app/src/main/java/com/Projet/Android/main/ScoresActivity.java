@@ -71,9 +71,13 @@ public class ScoresActivity extends AppCompatActivity {
             Double nbOpDIFFICULT = Double.valueOf(dernierScore.getNbOpDIFFICULT());
             Double nbSucDIFFICULT =  Double.valueOf(dernierScore.getNbSuccesDIFFICULT());
 
-            textViewEASYRate.setText(String.valueOf((nbOpEASY/nbSucEASY)*100));
-            textViewMEDIUMRate.setText(String.valueOf((nbOpMEDIUM/nbSucMEDIUM)*100));
-            textViewDIFFICULTRate.setText(String.valueOf((nbOpDIFFICULT/nbSucDIFFICULT)*100));
+            Double tauxEASY = (nbSucEASY/nbOpEASY)*100;
+            Double tauxMEDIUM = (nbSucMEDIUM/nbOpMEDIUM)*100;
+            Double tauxDIFFICULT = (nbSucDIFFICULT/nbOpDIFFICULT)*100;
+
+            textViewEASYRate.setText(String.valueOf(Math.round(tauxEASY) + " %"));
+            textViewMEDIUMRate.setText(String.valueOf(Math.round(tauxMEDIUM) + " %"));
+            textViewDIFFICULTRate.setText(String.valueOf(Math.round(tauxDIFFICULT)+ " %"));
         }
     }
 
