@@ -214,6 +214,7 @@ public class PlayZoneActivity extends AppCompatActivity{
     private void ajouteResultatFaux() {
         nbLife--;
         streak = 0;
+        itemStreak.setTitle(getString(R.string.streak)+streak);
         TextViewLife.setText("");
         for(int nb = 1; nb <= nbLife;nb++){
             TextViewLife.setText(TextViewLife.getText() + "❤ ");
@@ -302,7 +303,6 @@ public class PlayZoneActivity extends AppCompatActivity{
     }
 
     private boolean ouvreActivityScore() {
-        //TODO UPDATE IN DB HERE TOO
         updateBDD();
         Intent intent = new Intent(this, ScoresActivity.class);
         startActivity(intent);

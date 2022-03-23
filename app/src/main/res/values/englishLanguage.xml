@@ -20,9 +20,9 @@
     <string name="textViewAnswerInPlayZone">Answer</string>
 
     <!-- Scores -->
-    <string name="numberCalcInScores">number of calcs :</string>
-    <string name="SuccessInScores">Success :</string>
-    <string name="RateInScores">Rate :</string>
+    <string name="numberCalcInScores"><u>number of calcs :</u></string>
+    <string name="SuccessInScores"><u>Success :</u></string>
+    <string name="RateInScores"><u>Rate :</u></string>
     <string name="mode_easyInScores">Easy Mode :</string>
     <string name="mode_mediumInScores">Medium Mode :</string>
     <string name="mode_difficultInScores">Difficult Mode :</string>
@@ -37,6 +37,6 @@
     <string name="aboutUs">About us</string>
 
     <!--About Us -->
-    <string name="InformationsDev">Project for DUT2 Computer Science - Android class</string>
+    <string name="InformationsDev">Project for DUT2 Computer Science - Android class\n\n<u>Languages available :</u>\n 🇬🇧 English - 🇫🇷 French</string>
 
 </resources>

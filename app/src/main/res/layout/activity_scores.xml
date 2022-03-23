@@ -15,7 +15,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@drawable/customborder"
             android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textViewModeEasy"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/mode_easyInScores"
+                android:textStyle="bold"
+                android:textSize="@dimen/TextSizeModeInScores" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -56,6 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:background="@drawable/customborder"
                 android:orientation="horizontal">
 
                 <TextView
@@ -91,6 +102,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@drawable/customborder"
             android:orientation="vertical">
 
             <TextView
@@ -99,6 +111,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:textSize="@dimen/TextSizeModeInScores"
+                android:textStyle="bold"
                 android:text="@string/mode_mediumInScores" />
 
             <LinearLayout
@@ -139,6 +152,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:background="@drawable/customborder"
                 android:orientation="horizontal">
 
                 <TextView
@@ -174,6 +188,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@drawable/customborder"
             android:orientation="vertical">
 
             <TextView
@@ -182,6 +197,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:textSize="@dimen/TextSizeModeInScores"
+                android:textStyle="bold"
                 android:text="@string/mode_difficultInScores" />
 
             <LinearLayout
@@ -222,6 +238,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:background="@drawable/customborder"
                 android:orientation="horizontal">
 
                 <TextView

@@ -19,9 +19,9 @@
     <string name="textViewAnswerInPlayZone">Réponse</string>
 
     <!-- Scores -->
-    <string name="numberCalcInScores">Nombre d\'opérations :</string>
-    <string name="SuccessInScores">Succès :</string>
-    <string name="RateInScores">Taux :</string>
+    <string name="numberCalcInScores"><u>Nombre d\'opérations :</u></string>
+    <string name="SuccessInScores"><u>Succès :</u></string>
+    <string name="RateInScores"><u>Taux :</u></string>
     <string name="mode_easyInScores">Mode Facile:</string>
     <string name="mode_mediumInScores">Mode Moyen :</string>
     <string name="mode_difficultInScores">Mode Difficile :</string>
@@ -37,5 +37,5 @@
     <string name="aboutUs">A propos</string>
 
     <!--About Us -->
-    <string name="InformationsDev">Projet DUT2 Informatique classe d\'Android</string>
+    <string name="InformationsDev">Projet DUT2 Informatique classe d\'Android\n\n<u>Langages disponibles :</u>\n 🇫🇷 Français - 🇬🇧 Anglais</string>
 </resources>
